@@ -1,0 +1,19 @@
+[run]
+omit =
+    src\__init__.py
+    src/__init__.py
+
+    src\models\*
+    src/models/*
+
+    src\exception\*
+    src/exception/*
+
+[report]
+exclude_lines =
+    case _:
+        raise Exception("Status Code (Error): {}".format(r.status_code))
+
+[html]
+directory = ./tests/coverage_html_report
+

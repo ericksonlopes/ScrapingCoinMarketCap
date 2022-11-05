@@ -3,8 +3,8 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup as bs4
 
-from exception import CryptoNotExists, PageNotFound
-from models import CryptoCurrency, CryptoCurrencySingle
+from src.exception import CryptoNotExists, PageNotFound
+from src.models import CryptoCurrency, CryptoCurrencySingle
 
 
 class ScrapingCryptoCurrency:
@@ -35,10 +35,8 @@ class ScrapingCryptoCurrency:
 
     def get_all_top_10_crypto_currency(self) -> List[CryptoCurrency]:
         list_of_currencies: List[CryptoCurrency] = []
-        try:
-            soup = self.get_data(self.__url_main)
-        except PageNotFound:
-            raise PageNotFound("Page not found")
+
+        soup = self.get_data(self.__url_main)
 
         for crypto_tr in soup.find_all('tr'):
             if crypto_tr.find('span', class_='icon-Star'):
@@ -79,7 +77,7 @@ class ScrapingCryptoCurrency:
 
         return list_of_currencies
 
-    def get_crypto_currency(self, name: str) -> CryptoCurrencySingle:
+    def get_single_crypto_currency(self, name: str) -> CryptoCurrencySingle:
         try:
             soup: bs4 = self.get_data(self.__url_single + name.upper())
         except PageNotFound:
