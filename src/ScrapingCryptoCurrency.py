@@ -108,9 +108,3 @@ class ScrapingCryptoCurrency:
             marketCap=market_cap,
             volume=volume,
             circulating_supply=circulating_supply)
-
-
-if __name__ == '__main__':
-    print(ScrapingCryptoCurrency().get_crypto_currency('bitcoin'))
-
-    print(ScrapingCryptoCurrency().get_all_top_10_crypto_currency()[0])
