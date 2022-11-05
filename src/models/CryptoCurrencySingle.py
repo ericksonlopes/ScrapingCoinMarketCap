@@ -1,15 +1,9 @@
 from dataclasses import dataclass
-from datetime import datetime
+
+from src.models.CryptoCurrency import CryptoCurrency
 
 
 @dataclass
-class CryptoCurrencySingle:
-    rank: int
-    icon: str
-    name: str
-    symbol: str
-    price: float
-    marketCap: float
-    volume: float
-    circulating_supply: float
-    at_update: str = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+class CryptoCurrencySingle(CryptoCurrency):
+    rank: int = None
+

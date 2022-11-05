@@ -1,22 +1,44 @@
+from typing import List
+
 import requests
 from bs4 import BeautifulSoup as bs4
 
+from exception import CryptoNotExists, PageNotFound
 from models import CryptoCurrency, CryptoCurrencySingle
 
 
 class ScrapingCryptoCurrency:
     def __init__(self):
-        self.url_main = "https://coinmarketcap.com/"
-        self.url_only = 'https://coinmarketcap.com/currencies/'
+        self.__url_main = "https://coinmarketcap.com/"
+        self.__url_single = 'https://coinmarketcap.com/currencies/'
 
-    def get_data(self, url: str) -> bs4:
+    @property
+    def url_main(self) -> str:
+        return self.__url_main
+
+    @property
+    def url_single(self) -> str:
+        return self.__url_single
+
+    @classmethod
+    def get_data(cls, url: str) -> bs4:
         r = requests.get(url)
-        soup = bs4(r.text, "html.parser")
-        return soup
 
-    def get_all_top_10_crypto_currency(self) -> list[CryptoCurrency]:
-        list_of_currencies: [CryptoCurrency] = []
-        soup = self.get_data(self.url_main)
+        match r.status_code:
+            case 200:
+                soup = bs4(r.text, "html.parser")
+                return soup
+            case 404:
+                raise PageNotFound("Page not found")
+            case _:
+                raise Exception("Status Code (Error): {}".format(r.status_code))
+
+    def get_all_top_10_crypto_currency(self) -> List[CryptoCurrency]:
+        list_of_currencies: List[CryptoCurrency] = []
+        try:
+            soup = self.get_data(self.__url_main)
+        except PageNotFound:
+            raise PageNotFound("Page not found")
 
         for crypto_tr in soup.find_all('tr'):
             if crypto_tr.find('span', class_='icon-Star'):
@@ -58,7 +80,10 @@ class ScrapingCryptoCurrency:
         return list_of_currencies
 
     def get_crypto_currency(self, name: str) -> CryptoCurrencySingle:
-        soup: bs4 = self.get_data(self.url_only + name.upper())
+        try:
+            soup: bs4 = self.get_data(self.__url_single + name.upper())
+        except PageNotFound:
+            raise CryptoNotExists(name)
 
         # name
         name_section: bs4 = soup.find(class_="nameSection")

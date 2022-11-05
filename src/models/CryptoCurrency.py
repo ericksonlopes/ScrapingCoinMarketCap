@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 
 
@@ -11,4 +11,5 @@ class CryptoCurrency:
     marketCap: float
     volume: float
     circulating_supply: float
-    at_update: str = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    at_update: datetime = field(default_factory=datetime.now)
+
