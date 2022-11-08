@@ -11,6 +11,7 @@ from src.models import CryptoCurrency, CryptoCurrencySingle
 class ScrapingCryptoCurrency:
     def __init__(self):
         logger.add(f'logs/{__class__.__name__}.log')
+        logger.add(f'logs/{__class__.__name__}_dict.log', serialize=True)
 
         self.__url_main: str = "https://coinmarketcap.com/"
         self.__url_single: str = 'https://coinmarketcap.com/currencies/'
@@ -106,7 +107,7 @@ class ScrapingCryptoCurrency:
             market_cap: float = float(soup.find_all(class_='statsValue')[0].text.replace('$', '').replace(',', ''))
             volume: float = float(soup.find_all(class_='statsValue')[2].text.replace('$', '').replace(',', ''))
             circulating_supply: float = float(
-                soup.find_all(class_='asdasd')[3].text.split()[0].replace('$', '').replace(',', ''))
+                soup.find_all(class_='statsValue')[3].text.split()[0].replace('$', '').replace(',', ''))
 
             return CryptoCurrencySingle(
                 name=name,
@@ -119,6 +120,5 @@ class ScrapingCryptoCurrency:
                 circulating_supply=circulating_supply)
 
         except Exception as dce:
-            logger.exception(dce)
-            logger.error(f'Error {dce}')
+            logger.exception(f'Error {dce}')
             raise DataCollectionError(dce)
