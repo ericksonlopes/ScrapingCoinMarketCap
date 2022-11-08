@@ -10,7 +10,7 @@ from src.models import CryptoCurrency, CryptoCurrencySingle
 
 class ScrapingCryptoCurrency:
     def __init__(self):
-        logger.add('logs/scraping.log')
+        logger.add(f'logs/{__class__.__name__}.log')
 
         self.__url_main = "https://coinmarketcap.com/"
         self.__url_single = 'https://coinmarketcap.com/currencies/'
