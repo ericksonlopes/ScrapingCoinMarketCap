@@ -1,7 +1,9 @@
 # ScrapingcoinMarketCap
 
 ![Python 3](https://img.shields.io/badge/python-3.10+-blue.svg)
+![Pytest](https://img.shields.io/badge/-Pytest-0A9EDC?&logo=Pytest&logoColor=FFFFFF)
 ![wakatime](https://wakatime.com/badge/user/541772df-f19f-4145-a40c-cf7ffac73ea5/project/e9f1ce61-e6ae-49ab-8e13-c2243f4cf38e.svg)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Erickson_Lopes%20-blue)](https://www.linkedin.com/in/ericksonlopes/)
 
 # Instalação 🛠️
 
