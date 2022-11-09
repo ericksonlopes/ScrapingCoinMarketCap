@@ -10,7 +10,7 @@ Faça o clone do projeto.
 ```python
 git
 clone
-https: // github.com / Erickson - lopes - dev / ScrapingCoinMarketCap
+https://github.com/Erickson-lopes-dev/ScrapingCoinMarketCap
 cd
 ScrapingCoinMarketCap /
 ```
