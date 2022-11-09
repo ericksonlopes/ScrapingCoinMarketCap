@@ -4,6 +4,7 @@ from src.ScrapingCryptoCurrency import ScrapingCryptoCurrency
 from src.exception import PageNotFound, CryptoNotExists
 
 
+@pytest.mark.ScrapingCryptoCurrency
 class TestScrapingCryptoCurrency:
     def setup_method(self):
         self.scc = ScrapingCryptoCurrency()
