@@ -8,8 +8,7 @@
 Faça o clone do projeto.
 
 ```python
-git
-clone
+git clone
 https://github.com/Erickson-lopes-dev/ScrapingCoinMarketCap
 cd
 ScrapingCoinMarketCap /
@@ -18,9 +17,7 @@ ScrapingCoinMarketCap /
 Crie uma maquina virtual para rodar o projeto.
 
 ```python
-python3 - m
-venv
-venv
+python3 - m venv venv
 ```
 
 Uma vez criado seu ambiente virtual, você deve ativá-lo.
@@ -34,16 +31,13 @@ source venv/bin/activate
 No Windows, execute:
 
 ```python
-call
-venv\Scripts\activate.bat
+call venv\Scripts\activate.bat
 ```
 
 Com o ambiente virtual ativado, Instale as dependências (certifique-se de que esteja na mesma pasta que o arquivo).
 
 ```python
-pip
-install - r
-requirements.txt
+pip install - r requirements.txt
 ```
 
 # Como Utilizar a classe
