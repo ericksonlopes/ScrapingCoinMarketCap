@@ -27,10 +27,18 @@ class ScrapingCryptoCurrency:
     @classmethod
     def get_data(cls, url: str) -> bs4:
         r = requests.get(url)
-        logger.info(f'Get data from {url}')
-        soup = bs4(r.text, "html.parser")
-        return soup
 
+        match r.status_code:
+            case 200:
+                logger.info(f'Get data from {url}')
+                soup = bs4(r.text, "html.parser")
+                return soup
+            case 404:
+                logger.warning(f'Page not found {url}')
+                raise PageNotFound("Page not found")
+            case _:
+                logger.error(f"Error {r.status_code} {r.reason}")
+                raise Exception("Status Code (Error): {}".format(r.status_code))
 
     def get_all_top_10_crypto_currency(self) -> List[CryptoCurrency]:
         list_of_currencies: List[CryptoCurrency] = []
