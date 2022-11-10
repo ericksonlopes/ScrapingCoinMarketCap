@@ -12,7 +12,12 @@ omit =
 [report]
 exclude_lines =
     case _:
+        logger.error(f"Error {r.status_code} {r.reason}")
         raise Exception("Status Code (Error): {}".format(r.status_code))
+
+    except Exception as dce:
+        logger.exception(f'Error {dce}')
+        raise DataCollectionError(dce)
 
 [html]
 directory = ./tests/coverage_html_report

@@ -26,7 +26,11 @@ class ScrapingCryptoCurrency:
 
     @classmethod
     def get_data(cls, url: str) -> bs4:
-        r = requests.get(url)
+        try:
+            r = requests.get(url)
+        except requests.exceptions.ConnectionError:
+            logger.exception(f'Connection error')
+            raise ConnectionError(f'Connection error')
 
         match r.status_code:
             case 200:

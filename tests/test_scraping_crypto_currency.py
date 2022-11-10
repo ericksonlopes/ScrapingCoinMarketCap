@@ -17,6 +17,10 @@ class TestScrapingCryptoCurrency:
         with pytest.raises(PageNotFound):
             self.scc.get_data(self.scc.url_main + 'not_exists')
 
+    def test_get_data_connection_error(self):
+        with pytest.raises(ConnectionError):
+            self.scc.get_data('https://coinmarketcsdfdsfap.com/')
+
     def test_get_data_200(self):
         assert self.scc.get_data(self.scc.url_main)
 
