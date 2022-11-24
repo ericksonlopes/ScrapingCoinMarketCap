@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup as bs4
 from loguru import logger
 
-from .exception import CryptoNotExists, PageNotFound, DataCollectionError
+from .exceptions import CryptoNotExists, PageNotFound, DataCollectionError
 from .models import CryptoCurrency, CryptoCurrencySingle
 
 
