@@ -1,7 +1,7 @@
 import pytest
 
 from src.ScrapingCryptoCurrency import ScrapingCryptoCurrency
-from src.exception import PageNotFound, CryptoNotExists
+from src.exceptions import PageNotFound, CryptoNotExists
 
 
 @pytest.mark.ScrapingCryptoCurrency

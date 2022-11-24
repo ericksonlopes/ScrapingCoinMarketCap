@@ -1,0 +1,3 @@
+from src.exceptions.CryptoNotExists import CryptoNotExists
+from src.exceptions.DataCollectionError import DataCollectionError
+from src.exceptions.PageNotFound import PageNotFound
